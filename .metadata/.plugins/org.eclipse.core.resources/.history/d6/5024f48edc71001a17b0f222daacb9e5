@@ -1,0 +1,56 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class DuplicateRemover {
+	
+	private Set <String> uniqueWords;		
+	
+	 public DuplicateRemover() {
+
+	 uniqueWords =  new LinkedHashSet<>();
+	 }
+
+	public void remove(String dataFile) {
+		String newWords = "";
+		try {
+			Scanner in = new Scanner(new File(dataFile));
+			while (in.hasNext()) {
+
+				newWords = newWords.concat(dataFile);
+				if (!(newWords.contains(newWords))) {
+					uniqueWords.add(in.next());
+				}
+
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("The file wasn't processed, try again!");
+		}
+
+	}
+	
+	public void write(String outputFile) {
+		
+		try {
+			PrintWriter output = new PrintWriter(outputFile);
+			for (String string : uniqueWords) {
+
+				output.println(string);
+	           }
+			output.flush();
+			output.close();
+			
+		} catch(FileNotFoundException e) {
+			System.out.println("The output wasn't processed, try again!");
+		}
+		
+	}
+	
+	
+	
+	
+}
+
